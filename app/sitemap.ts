@@ -18,16 +18,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Add all archive challenges
-    const challenges = await prisma.challenge.findMany({
-        select: { id: true, updatedAt: true },
-    });
+    try {
+        const challenges = await prisma.challenge.findMany({
+            select: { id: true, updatedAt: true },
+        });
 
-    const challengeRoutes = challenges.map((challenge: { id: string; updatedAt: Date }) => ({
-        url: `${baseUrl}/challenge/${challenge.id}`,
-        lastModified: challenge.updatedAt,
-        changeFrequency: "monthly" as const,
-        priority: 0.5,
-    }));
+        const challengeRoutes = challenges.map((challenge: { id: string; updatedAt: Date }) => ({
+            url: `${baseUrl}/challenge/${challenge.id}`,
+            lastModified: challenge.updatedAt,
+            changeFrequency: "monthly" as const,
+            priority: 0.5,
+        }));
 
-    return [...staticRoutes, ...challengeRoutes];
+        return [...staticRoutes, ...challengeRoutes];
+    } catch (error) {
+        console.error("Error generating challenge routes for sitemap:", error);
+        return staticRoutes;
+    }
 }
