@@ -1,9 +1,10 @@
 "use server";
 
+import { Prisma } from "@prisma/client";
 import prisma from "@/lib/prisma";
 
 export async function getLeaderboard(type: "streak" | "accuracy" | "total" | "time") {
-    let orderBy: any = {};
+    let orderBy: Prisma.UserOrderByWithRelationInput = {};
 
     switch (type) {
         case "streak":
@@ -31,7 +32,7 @@ export async function getLeaderboard(type: "streak" | "accuracy" | "total" | "ti
         }
     });
 
-    return users.map((u: any, i: number) => ({
+    return users.map((u, i: number) => ({
         rank: i + 1,
         id: u.id,
         name: u.nickname || "Anonymous Spark",

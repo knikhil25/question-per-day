@@ -22,7 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         select: { id: true, updatedAt: true },
     });
 
-    const challengeRoutes = challenges.map((challenge) => ({
+    const challengeRoutes = challenges.map((challenge: { id: string; updatedAt: Date }) => ({
         url: `${baseUrl}/challenge/${challenge.id}`,
         lastModified: challenge.updatedAt,
         changeFrequency: "monthly" as const,
