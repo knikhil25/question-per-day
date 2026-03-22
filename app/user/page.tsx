@@ -18,7 +18,7 @@ import { toast } from "sonner";
 import { PlusCircle, Loader2, Trash2, Calendar } from "lucide-react";
 import { formatPST, getPSTDate } from "@/lib/utils/date";
 
-export default function AdminPage() {
+export default function UserPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [challenges, setChallenges] = useState<any[]>([]);
     const [formData, setFormData] = useState({

@@ -79,6 +79,11 @@ export function Navbar() {
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem asChild>
+                                    <Link href="/user" className="flex items-center gap-2 cursor-pointer p-3 rounded-xl focus:bg-neutral-800">
+                                        <Sparkles className="w-4 h-4 text-violet-400" /> Manage Sparks
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem asChild>
                                     <Link href="/leaderboard" className="flex items-center gap-2 cursor-pointer p-3 rounded-xl focus:bg-neutral-800">
                                         <Trophy className="w-4 h-4 text-yellow-400" /> Rankings
                                     </Link>
